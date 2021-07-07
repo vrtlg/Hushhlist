@@ -1,0 +1,30 @@
+﻿@model Hushhlist.Models.Gift
+
+<h1>Gifts Details</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>URL</th>
+            <th>Priority?</th>
+            <th>Age restricted?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.ItemName</td>
+            <td>@Model.ItemDescription</td>
+            <td>@Model.URL</td>
+            <td>
+                @if(Model.IsPriority){
+                <img src="~/img/tick.svg" class="tinyIcon" alt="True"/>}
+            </td>
+            <td>
+                @if(Model.IsAgeRestricted){
+                <img src="~/img/tick.svg" class="tinyIcon" alt="True" />}
+            </td>
+        </tr>
+    </tbody>
+</table>

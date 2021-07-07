@@ -1,0 +1,66 @@
+﻿@model Hushhlist.Models.ViewModels.HostEventsViewModel
+
+<div>
+    <h1>@Model.HostEvent.EventTitle</h1>
+    <h2>@Model.HostEvent.EventDate</h2>
+</div>
+
+<div>
+    <p><em>Status:</em> @Model.HostEvent.Status</p>
+    @if (@Model.HostEvent.Status == "Upcoming")
+    {
+        <p><em>Date:</em> @Model.HostEvent.EventDate</p>
+    }
+    <p><em>Location:</em> @Model.HostEvent.Location</p>
+</div>
+
+<div>
+    <p>@Model.HostEvent.EventDate</p>
+</div>
+
+<div>
+    <p>Guests can reserve <em>@Model.HostEvent.MaxReservable</em> gifts.</p>
+</div>
+
+
+
+<div>
+    <h3>Guest List:</h3>
+    <a class="button" asp-controller="Guest" asp-action="Create" asp-route-EventId="@Model.HostEvent.EventId">Invite Guests</a>
+    @if (Model.Guests.Count > 0)
+    {
+        <ul>
+            @for (int i = 0; i < Model.Guests.Count(); i++)
+            {
+                <li>
+                    @Model.Guests[i].FirstName @Model.Guests[i].LastName <a asp-controller="Guest" asp-action="Delete" asp-route-EventId=@Model.HostEvent.EventId asp-route-GuestId="@Model.Guests[i].GuestId">[x]</a>
+                </li>
+
+            }
+        </ul>
+    }
+    else
+    {
+        <p>You have not invited any guests to this event yet.</p>
+    }
+
+</div>
+
+<div>
+    <h3>Wishlist:</h3>
+    <a class="button" asp-controller="Gift" asp-action="Create" asp-route-EventId="@Model.HostEvent.EventId">Add to Wishlist</a>
+    @if (Model.Gifts.Count() > 0)
+    {
+        <ul>
+            @for (int i = 0; i < Model.Gifts.Count(); i++)
+            {
+                <li>@Model.Gifts[i].ItemName</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>You have not added any items to your Wishlist yet.</p>
+    }
+
+</div>

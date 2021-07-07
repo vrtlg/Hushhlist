@@ -1,0 +1,44 @@
+﻿@model Hushhlist.Models.ViewModels.HostEventsViewModel
+
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+<h1>Gifts Index</h1>
+
+<div asp-validation-summary="All"></div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Item name</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Gifts.Count(); i++)
+        {
+            <tr>
+                <td><a asp-controller="Gift" asp-action="Details" asp-route-GiftId="@Model.Gifts[i].GiftId">@Model.Gifts[i].ItemName</a></td>
+                <td>@Model.Gifts[i].ItemDescription</td>
+                <td>
+                    @if (@Model.Gifts[i].GuestId == null)
+                    {
+                        <a asp-action="ReserveGift" asp-route-EventId=@Model.Gifts[i].EventId asp-route-GiftId="@Model.Gifts[i].GiftId">Reserve</a>
+                        <a asp-action="MarkAsBought" asp-route-EventId=@Model.Gifts[i].EventId asp-route-GiftId="@Model.Gifts[i].GiftId">Mark as bought</a>
+                    }
+                    else if (Model.Gifts[i].GuestId == UserManager.GetUserId(User))
+                    {
+                        @Model.Gifts[i].Status <span>by you |</span> <a asp-action="MarkAsBought" asp-route-EventId=@Model.Gifts[i].EventId asp-route-GiftId="@Model.Gifts[i].GiftId">Mark as bought</a> <a asp-action="Unassign" asp-route-EventId="@Model.Gifts[i].EventId" asp-route-GiftId="@Model.Gifts[i].GiftId">Unassign</a>
+                    }
+                    else
+                    {
+                        @Model.Gifts[i].Status
+                        @if(Model.Gifts[i].Status == null) { <span>Available</span>}
+                        @if (@Model.Gifts[i].Status == "Reserved") {<a asp-action="RequestOwnership" asp-route-EventId=@Model.Gifts[i].EventId asp-route-GiftId="@Model.Gifts[i].GiftId">Request ownership transfer</a> }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

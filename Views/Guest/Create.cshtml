@@ -1,0 +1,37 @@
+﻿@model Hushhlist.Models.ViewModels.GuestsViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Guest Create</h1>
+
+<form asp-action="Create" asp-route-EventId="@Model.EventId" method="post">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="@Model.Guest.FirstName"></label>
+        <input asp-for="@Model.Guest.FirstName" />
+        <span asp-validation-for="Guest.FirstName"></span>
+    </div>
+    <div>
+            <label asp-for="@Model.Guest.LastName"></label>
+            <input asp-for="@Model.Guest.LastName" />
+            <span asp-validation-for="Guest.LastName"></span>
+        </div>
+    <div>
+        <label asp-for="@Model.Guest.LoginMethod"></label>
+        <input asp-for="@Model.Guest.LoginMethod" />
+        <span asp-validation-for="Guest.LoginMethod"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.Guest.Username"></label>
+        <input asp-for="@Model.Guest.Username" />
+        <span asp-validation-for="Guest.Username"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.Guest.IsOver18"></label>
+        <input asp-for="@Model.Guest.IsOver18" type="checkbox" />
+    </div>
+    <button type="submit">Submit</button>
+</form>
+

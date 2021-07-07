@@ -1,0 +1,43 @@
+﻿@model Hushhlist.Models.ViewModels.HostEventsViewModel
+
+<h1>Events Edit</h1>
+
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <input asp-for="@Model.HostEvent.EventId" hidden />
+    </div>
+    <div>
+        <label asp-for="@Model.HostEvent.EventTitle"></label>
+        <input type="text" asp-for="@Model.HostEvent.EventTitle" />
+        <span asp-validation-for="@Model.HostEvent.EventTitle"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.HostEvent.Status"></label>
+        <select asp-for="@Model.HostEvent.Status" asp-items="@Model.Status" onchange="ShowHideDateInput(this)"></select>
+    </div>
+    <div class="DateInput">
+        <label asp-for="@Model.HostEvent.EventDate"></label>
+        <input asp-for="@Model.HostEvent.EventDate" />
+        <span asp-validation-for="@Model.HostEvent.EventDate"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.HostEvent.Location"></label>
+        <input asp-for="@Model.HostEvent.Location" />
+    </div>
+    <div>
+        <label asp-for="@Model.HostEvent.EventDescription"></label>
+        <input asp-for="@Model.HostEvent.EventDescription" />
+        <span asp-validation-for="@Model.HostEvent.EventDescription"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.HostEvent.EventPassword"></label>
+        <input asp-for="@Model.HostEvent.EventPassword" />
+        <span asp-validation-for="@Model.HostEvent.EventPassword"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.HostEvent.MaxReservable"></label>
+        <input asp-for="@Model.HostEvent.MaxReservable" />
+    </div>
+    <button type="submit">Submit</button>
+</form>

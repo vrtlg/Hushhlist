@@ -1,0 +1,34 @@
+﻿@model Hushhlist.Models.Gift
+
+<h1>Gifts Edit</h1>
+
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <input asp-for="@Model.GiftId" hidden />
+    </div>
+    <div>
+        <label asp-for="@Model.ItemName"></label>
+        <input asp-for="@Model.ItemName" />
+        <span asp-validation-for="ItemName"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.ItemDescription"></label>
+        <input asp-for="@Model.ItemDescription" />
+        <span asp-validation-for="ItemDescription"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.URL"></label>
+        <input asp-for="@Model.URL" />
+        <span asp-validation-for="URL"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.IsAgeRestricted"></label>
+        <input asp-for="@Model.IsAgeRestricted" type="checkbox" />
+    </div>
+    <div>
+        <label asp-for="@Model.IsPriority"></label>
+        <input asp-for="@Model.IsPriority" type="checkbox" />
+    </div>
+    <button type="submit">Submit</button>
+</form>

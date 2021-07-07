@@ -1,0 +1,31 @@
+﻿@model Hushhlist.Models.ViewModels.GiftsViewModel
+
+<h1>Gifts Create</h1>
+
+<form asp-action="Create" asp-route-EventId=@Model.EventId method="post">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="@Model.Gift.ItemName"></label>
+        <input asp-for="@Model.Gift.ItemName" />
+        <span asp-validation-for="Gift.ItemName"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.Gift.ItemDescription"></label>
+        <input asp-for="@Model.Gift.ItemDescription" />
+        <span asp-validation-for="Gift.ItemDescription"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.Gift.URL"></label>
+        <input asp-for="@Model.Gift.URL" />
+        <span asp-validation-for="Gift.URL"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.Gift.IsAgeRestricted"></label>
+        <input asp-for="@Model.Gift.IsAgeRestricted" type="checkbox" />
+    </div>
+    <div>
+        <label asp-for="@Model.Gift.IsPriority"></label>
+        <input asp-for="@Model.Gift.IsPriority" type="checkbox" />
+    </div>
+    <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,36 @@
+﻿@model Hushhlist.Models.ViewModels.GuestsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Guests Index</h1>
+
+@for (int i = 0; i < Model.Guests.Count(); i++)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>@Model.Guests[i].FirstName @Model.Guests[i].LastName | <a asp-controller="Guest" asp-action="Edit" asp-route-GuestId="@Model.Guests[i].GuestId">Edit</a> | <a asp-controller="Guest" asp-action="Delete" asp-route-GuestId="@Model.Guests[i].GuestId">Delete</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Guest Name:</td>
+                <td>@Model.Guests[i].FirstName @Model.Guests[i].LastName</td>
+            </tr>
+            <tr>
+                <td>Guest Username:</td>
+                <td>@Model.Guests[i].Username</td>
+            </tr>
+            <tr>
+                <td> Guest Login Method:</td>
+                <td>@Model.Guests[i].LoginMethod</td>
+            </tr>
+            <tr>
+                <td> Is over 18</td>
+                <td>@Model.Guests[i].IsOver18</td>
+            </tr>   
+        </tbody>
+    </table>
+}

@@ -1,0 +1,12 @@
+﻿@model Hushhlist.Models.ViewModels.NotificationsViewModel
+
+<h1>Notifications</h1>
+
+<ul>
+    @for (int i = 0; i < Model.Notifications.Count(); i++)
+    {
+    <li>
+        @Model.Notifications[i].Message
+    </li>
+    }
+</ul>

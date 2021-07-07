@@ -1,0 +1,69 @@
+﻿@model Hushhlist.Models.ViewModels.HostEventsViewModel
+
+<h1>Your Events</h1>
+<a asp-action="Create" class="button">Create new event</a>
+
+<h2>Hosting</h2>
+@if (Model.EventsHosting.Count < 1)
+{
+    <p>You are not hosting any events</p>
+}
+else
+{
+    @for (int i = 0; i < Model.EventsHosting.Count; i++)
+    {
+        <article class="card">
+            <div>
+                <h1><a asp-action="Details" asp-route-EventId="@Model.EventsHosting[i].EventId">@Model.EventsHosting[i].EventTitle</a></h1>
+                <p>@Model.EventsHosting[i].Status: @Model.EventsHosting[i].EventDate</p>
+                <p>@Model.EventsHosting[i].Location</p>
+                <br />
+                <a asp-controller="Guest" asp-action="Index" asp-route-EventId="@Model.EventsHosting[i].EventId">Guest list</a> 
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-EventId="@Model.EventsHosting[i].EventId">Edit</a>
+                <a asp-action="Delete" asp-route-EventId="@Model.EventsHosting[i].EventId">Delete</a>
+            </div>
+        </article>
+    }
+}
+
+<h2>Attending</h2>
+@if (Model.EventsAttending.Count < 1)
+{
+    <p>You are not attending any events</p>
+}
+else
+{
+    @for (int i = 0; i < Model.EventsAttending.Count; i++)
+    {
+        <article class="card">
+            <div>
+                <h1>@Model.EventsAttending[i].EventTitle</h1>
+                <p>@Model.EventsAttending[i].Status: @Model.EventsAttending[i].EventDate</p>
+                <p>@Model.EventsAttending[i].Location</p>
+                <br />
+                <a asp-controller="Gift" asp-action="Index" asp-route-EventId="@Model.EventsAttending[i].EventId">Wishlist</a>
+            </div>
+        </article>
+    }
+}
+
+<h2>Invited awaiting response</h2>
+@if (Model.EventInvitations.Count < 1)
+{
+    <p>You have no invites pending</p>
+}
+else
+{
+    <ul>
+        @for (int i = 0; i < Model.EventInvitations.Count; i++)
+        {
+        <li>
+            <span>@Model.EventInvitations[i].EventTitle</span>, 
+            <span>@Model.EventInvitations[i].EventDate, @Model.EventInvitations[i].Location</span>
+            <a asp-controller="Guest" asp-action="AcceptEventInvitation" asp-route-EventId="@Model.EventInvitations[i].EventId">Accept Invite</a>
+        </li>
+        }
+    </ul>
+}
